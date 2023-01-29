@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "6d2cad81-b6cd-46dc-a9b7-daa7f15a5a55",
+		"name": "Week2Day1_Chaining",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25440154"
+	},
+	"item": [
+		{
+			"name": "Create Change Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp =pm.response.json();\r",
+							"console.log(resp.result.sys_id);\r",
+							"\r",
+							"var systemid=resp.result.sys_id;\r",
+							"pm.globals.set(\"SysID\", systemid);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURI}}/api/now/table/{{change_request}}?sysparm_fields=sys_id",
+					"host": [
+						"{{BaseURI}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{change_request}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id"
+						},
+						{
+							"key": "sysparm_limit",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Change Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Hello\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Updated Postman\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"Hello World\",\r\n    \"description\": \"Updated Postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURI}}/api/now/table/{{change_request}}/{{SysID}}",
+					"host": [
+						"{{BaseURI}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{change_request}}",
+						"{{SysID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Change Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURI}}/api/now/table/{{change_request}}/{{SysID}}",
+					"host": [
+						"{{BaseURI}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{change_request}}",
+						"{{SysID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "K4TExby8r$!Y",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "change_request",
+			"value": "change_request",
+			"type": "string"
+		}
+	]
+}
