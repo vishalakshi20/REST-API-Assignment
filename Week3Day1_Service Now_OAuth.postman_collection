@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "68d76e15-928d-4fa7-aa34-4d89fd47590b",
+		"name": "Service Now_OAuth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25440154"
+	},
+	"item": [
+		{
+			"name": "Create Incident",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev52838.service-now.com/api/now/table/incident?sysparm_fields=sys_id&sysparm_limit=10",
+					"protocol": "https",
+					"host": [
+						"dev52838",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id"
+						},
+						{
+							"key": "sysparm_limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://dev52838.service-now.com/oauth_token.do",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "f85a3725ff3c611036a186060f3c6c3d",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "5VM~+Fo+ad",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "useraccount",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "K4TExby8r$!Y",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev52838.service-now.com/oauth_token.do",
+					"protocol": "https",
+					"host": [
+						"dev52838",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"oauth_token.do"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientSecret",
+				"value": "5VM~+Fo+ad",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "f85a3725ff3c611036a186060f3c6c3d",
+				"type": "string"
+			},
+			{
+				"key": "state",
+				"value": "Test",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://dev52838.service-now.com/oauth_token.do",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://dev52838.service-now.com/oauth_auth.do",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://getpostman.com/oauth2/callback",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "Visa_TestOAuth",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
